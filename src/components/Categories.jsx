@@ -10,7 +10,7 @@ const categories = [
   'Закрытые',
 ];
 
-function Categories() {
+const Categories = () => {
   const dispatch = useDispatch();
   const selectedId = useSelector((state) => state.filter.categoryId);
 
@@ -29,6 +29,6 @@ function Categories() {
       </ul>
     </div>
   );
-}
+};
 
 export default Categories;

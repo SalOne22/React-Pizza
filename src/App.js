@@ -8,7 +8,7 @@ import { createContext, useState } from 'react';
 
 export const SearchContext = createContext('');
 
-function App() {
+const App = () => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
@@ -25,6 +25,6 @@ function App() {
       </SearchContext.Provider>
     </div>
   );
-}
+};
 
 export default App;

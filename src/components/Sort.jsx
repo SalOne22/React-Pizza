@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortItem, setSortOrder } from '../redux/slices/filterSlice';
 
@@ -8,14 +8,27 @@ export const listMenu = [
   { title: 'алфавиту', tag: 'title' },
 ];
 
-function Sort() {
+const Sort = () => {
   const dispatch = useDispatch();
   const { sortItem, sortOrder } = useSelector((state) => state.filter);
+  const sortRef = useRef();
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => document.body.removeEventListener('click', handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
           onClick={() => dispatch(setSortOrder(!sortOrder))}
@@ -54,6 +67,6 @@ function Sort() {
       )}
     </div>
   );
-}
+};
 
 export default Sort;
