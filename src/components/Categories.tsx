@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId } from '../redux/slices/filterSlice';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { RootState } from '../redux/store';
 
 const categories = [
@@ -12,7 +12,7 @@ const categories = [
   'Закрытые',
 ];
 
-const Categories: FC = () => {
+const Categories: FC = memo(() => {
   const dispatch = useDispatch();
   const selectedId = useSelector((state: RootState) => state.filter.categoryId);
 
@@ -31,6 +31,6 @@ const Categories: FC = () => {
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;

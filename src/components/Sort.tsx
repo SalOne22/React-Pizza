@@ -1,18 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFilter,
   setSortItem,
   setSortOrder,
-  SortItem,
-  SortTag,
-  SortTitle,
 } from '../redux/slices/filterSlice';
-
-// const objInfo = {
-//   age: 16,
-//   city: 'Burgos',
-// };
+import { SortItem, SortTag, SortTitle } from '../redux/slices/types';
 
 export const listMenu: SortItem[] = [
   { title: SortTitle.RATING, tag: SortTag.RATING },
@@ -20,7 +13,7 @@ export const listMenu: SortItem[] = [
   { title: SortTitle.TITLE, tag: SortTag.TITLE },
 ];
 
-const Sort: FC = () => {
+const Sort: FC = memo(() => {
   const dispatch = useDispatch();
   const { sortItem, sortOrder } = useSelector(selectFilter);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -82,6 +75,6 @@ const Sort: FC = () => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;

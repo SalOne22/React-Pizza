@@ -10,13 +10,10 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import PizzaBlock from '../components/PizzaBlock';
 import Pagination from '../components/Pagination';
 
-import {
-  FilterSliceState,
-  selectFilter,
-  setFilters,
-} from '../redux/slices/filterSlice';
+import { selectFilter, setFilters } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzasData } from '../redux/slices/pizzasSlice';
 import { useAppDispatch } from '../redux/store';
+import { FilterSliceState } from '../redux/slices/types';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
