@@ -1,23 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortItem, setSortOrder } from '../redux/slices/filterSlice';
+import {
+  selectFilter,
+  setSortItem,
+  setSortOrder,
+  SortItem,
+  SortTag,
+  SortTitle,
+} from '../redux/slices/filterSlice';
 
-export const listMenu = [
-  { title: 'популярности', tag: 'rating' },
-  { title: 'цене', tag: 'price' },
-  { title: 'алфавиту', tag: 'title' },
+// const objInfo = {
+//   age: 16,
+//   city: 'Burgos',
+// };
+
+export const listMenu: SortItem[] = [
+  { title: SortTitle.RATING, tag: SortTag.RATING },
+  { title: SortTitle.PRICE, tag: SortTag.PRICE },
+  { title: SortTitle.TITLE, tag: SortTag.TITLE },
 ];
 
-const Sort = () => {
+const Sort: FC = () => {
   const dispatch = useDispatch();
-  const { sortItem, sortOrder } = useSelector((state) => state.filter);
-  const sortRef = useRef();
+  const { sortItem, sortOrder } = useSelector(selectFilter);
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent): void => {
+      const _event = event as MouseEvent & {
+        path: Node[];
+      };
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpen(false);
       }
     };
@@ -31,7 +46,7 @@ const Sort = () => {
     <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
-          onClick={() => dispatch(setSortOrder(!sortOrder))}
+          onClick={() => dispatch(setSortOrder(Number(!sortOrder)))}
           width="12"
           height="15"
           viewBox="0 0 10 6"

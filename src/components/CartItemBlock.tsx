@@ -1,15 +1,39 @@
 import { useDispatch } from 'react-redux';
-import { addItem, decrementItem, removeItem } from '../redux/slices/cartSlice';
+import {
+  addItem,
+  CartItem,
+  decrementItem,
+  removeItem,
+} from '../redux/slices/cartSlice';
+import { FC } from 'react';
+import clsx from 'clsx';
 
-const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
+type CartItemProps = {
+  id: string;
+  title: string;
+  type: string;
+  size: number;
+  price: number;
+  count: number;
+  imageUrl: string;
+};
+
+const CartItemBlock: FC<CartItemProps> = ({
+  id,
+  title,
+  type,
+  size,
+  price,
+  count,
+  imageUrl,
+}) => {
   const dispatch = useDispatch();
 
-  // todo: Add items with unique parameters
   const addOnClick = () => {
     dispatch(
       addItem({
         id,
-      })
+      } as CartItem)
     );
   };
 
@@ -35,7 +59,8 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
         </p>
       </div>
       <div className="cart__item-count">
-        <div
+        <button
+          disabled={count === 1}
           onClick={decrementOnClick}
           className="button button--outline button--circle cart__item-count-minus"
         >
@@ -55,9 +80,9 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div
+        <button
           onClick={addOnClick}
           className="button button--outline button--circle cart__item-count-plus"
         >
@@ -77,13 +102,13 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <div
+        <button
           onClick={removeOnClick}
           className="button button--outline button--circle"
         >
@@ -103,10 +128,10 @@ const CartItem = ({ id, title, type, size, price, count, imageUrl }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );
 };
 
-export default CartItem;
+export default CartItemBlock;
