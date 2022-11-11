@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FC } from 'react';
 import { RootState } from '../../redux/store';
 
-const Pagination: FC = () => {
+export const Pagination: FC = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector(
     (state: RootState) => state.filter.currentPage
@@ -24,5 +24,3 @@ const Pagination: FC = () => {
     />
   );
 };
-
-export default Pagination;

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../store';
-import { Pizza, PizzaSliceState, Status, FilterSliceState } from './types';
+import { FilterSliceState, Pizza, PizzaSliceState, Status } from './types';
 
 const itemsUrl = 'https://635a624f6f97ae73a62b0a80.mockapi.io/items';
 

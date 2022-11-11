@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { FC, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import Categories from '../components/Categories';
-import Sort from '../components/Sort';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import PizzaBlock from '../components/PizzaBlock';
-import Pagination from '../components/Pagination';
-
 import { selectFilter, setFilters } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzasData } from '../redux/slices/pizzasSlice';
 import { useAppDispatch } from '../redux/store';
 import { FilterSliceState } from '../redux/slices/types';
+
+import {
+  Categories,
+  Pagination,
+  PizzaBlock,
+  Skeleton,
+  Sort,
+} from '../components';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();

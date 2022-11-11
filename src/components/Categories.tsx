@@ -12,7 +12,7 @@ const categories = [
   'Закрытые',
 ];
 
-const Categories: FC = memo(() => {
+export const Categories: FC = memo(() => {
   const dispatch = useDispatch();
   const selectedId = useSelector((state: RootState) => state.filter.categoryId);
 
@@ -32,5 +32,3 @@ const Categories: FC = memo(() => {
     </div>
   );
 });
-
-export default Categories;

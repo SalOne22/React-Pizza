@@ -13,7 +13,7 @@ export const listMenu: SortItem[] = [
   { title: SortTitle.TITLE, tag: SortTag.TITLE },
 ];
 
-const Sort: FC = memo(() => {
+export const Sort: FC = memo(() => {
   const dispatch = useDispatch();
   const { sortItem, sortOrder } = useSelector(selectFilter);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -76,5 +76,3 @@ const Sort: FC = memo(() => {
     </div>
   );
 });
-
-export default Sort;
